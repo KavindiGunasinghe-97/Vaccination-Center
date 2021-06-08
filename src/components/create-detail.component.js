@@ -4,7 +4,7 @@ import axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Row, Col, Card, Form, Button, InputGroup, FormControl, DropdownButton, Dropdown} from 'react-bootstrap';
-
+import DropdownMultiselect from "react-multiselect-dropdown-bootstrap";
 
 toast.configure()
 
@@ -44,12 +44,32 @@ export default class CreateDetail extends Component {
             district: '',
             division: '',
             grama: '',
-            nearest: '',
+            nearest: [],
             divi:[],
             nila:[],
-            users: []
-        }
+            users: [],
+            // nearest: [
+            //     {id: 1, value: "PHP"},
+            //     {id: 2, value: "Laravel"},
+            //     {id: 3, value: "WordPress"},
+            //     {id: 4, value: "Joomla"}
+            // ],
+            // selCategories: 'php'
+                };
+        // this.handleChange = this.handleChange.bind(this);
     }
+
+    // handleChange(event) {
+    //
+    //     const selected=[];
+    //     let selectedOption=(event.target.selectedOptions);
+    //
+    //     for (let i = 0; i < selectedOption.length; i++){
+    //         selected.push(selectedOption.item(i).value)
+    //     }
+    //
+    //     this.setState({selCategories: selected});
+    // }
 
     componentDidMount() {
         axios.get('http://localhost:5000/users/')
@@ -235,9 +255,9 @@ export default class CreateDetail extends Component {
                                                 value={this.state.age}
                                                 onChange={this.onChangeAge}>
                                             <option selected>Select Age Range</option>
-                                            <option value="1">12 - 30 Years</option>
-                                            <option value="2">31 - 60 Years</option>
-                                            <option value="3">60 + Years</option>
+                                            <option value="12 - 30 Years">12 - 30 Years</option>
+                                            <option value="31 - 60 Years">31 - 60 Years</option>
+                                            <option value="60 + Years">60 + Years</option>
                                         </select>
                                     </div>
 
@@ -249,11 +269,11 @@ export default class CreateDetail extends Component {
                                                 value={this.state.vtype}
                                                 onChange={this.onChangeType}>
                                             <option selected>Select Vaccine Type</option>
-                                            <option value="1">None</option>
-                                            <option value="2">Astrazenecz</option>
-                                            <option value="3">Sinopharm</option>
-                                            <option value="4">Sputnik</option>
-                                            <option value="5">Pfizer</option>
+                                            <option value="None">None</option>
+                                            <option value="Astrazenecz">Astrazenecz</option>
+                                            <option value="Sinopharm">Sinopharm</option>
+                                            <option value="Sputnik">Sputnik</option>
+                                            <option value="Pfizer">Pfizer</option>
 
                                         </select>
                                     </div>
@@ -267,9 +287,9 @@ export default class CreateDetail extends Component {
                                                 value={this.state.vdosage}
                                                 onChange={this.onChangeDosage}>
                                             <option selected>Select Vaccine Dosage</option>
-                                            <option value="1">None</option>
-                                            <option value="2">1</option>
-                                            <option value="3">2</option>
+                                            <option value="None">None</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
                                         </select>
                                     </div>
 
@@ -344,16 +364,32 @@ export default class CreateDetail extends Component {
 
                                     <div className="form-group">
                                         <label>Nearest Vaccination Centers: </label>
-                                        <select ref="vNearest"
-                                                required
-                                                className="form-control"
-                                                value={this.state.nearest}
-                                                onChange={this.onChangeNearest}>
-                                            <option selected>Select 3 nearest vaccination centers</option>
-                                            <option value="1">Akmeemana</option>
-                                            <option value="2">Galle</option>
-                                            <option value="3">Matara</option>
-                                        </select>
+                                        {/*<select  multi joinValues*/}
+                                        {/*    ref="vNearest"*/}
+                                        {/*        required*/}
+                                        {/*        className="form-control"*/}
+                                        {/*        value={this.state.nearest}*/}
+                                        {/*        onChange={this.onChangeNearest}>*/}
+                                        {/*    <option selected>Select 3 nearest vaccination centers</option>*/}
+                                        {/*    <option value="1">Akmeemana</option>*/}
+                                        {/*    <option value="2">Galle</option>*/}
+                                        {/*    <option value="3">Matara</option>*/}
+                                        {/*</select>*/}
+                                        <DropdownMultiselect
+                                                ref="vNearest"
+                                                    required
+                                                    value={this.state.nearest}
+                                                    onChange={this.onChangeNearest}
+                                            options={["Akmeemana", "Galle", "Matara", "Walahanduwa", "Nuwara", "Habaraduwa"]}
+
+                                        />
+                                        {/*<select multiple onChange={this.handleChange.bind(this)}>*/}
+                                        {/*    {*/}
+                                        {/*        this.state.nearest.map(item => (*/}
+                                        {/*            <option value={item.id}>{item.value}</option>*/}
+                                        {/*        ))*/}
+                                        {/*    }*/}
+                                        {/*</select>*/}
                                     </div>
 
 

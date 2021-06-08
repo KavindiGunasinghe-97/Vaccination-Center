@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Row, Col, Card, Form, Button, InputGroup, FormControl, DropdownButton, Dropdown} from 'react-bootstrap';
 
 toast.configure()
 
@@ -50,8 +51,14 @@ export default class CreateUsers extends Component {
 
     render() {
         return (
+            <Row>
+                <Col>
+                    <Card>
+                        <Card.Header>
+                            <Card.Title as="h5">Create New User</Card.Title>
+                        </Card.Header>
+                        <Card.Body>
             <div>
-                <h3>Create New User</h3>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
                         <label>Username: </label>
@@ -72,6 +79,11 @@ export default class CreateUsers extends Component {
                     <br></br>
                 </form>
             </div>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+
         )
     }
 }
