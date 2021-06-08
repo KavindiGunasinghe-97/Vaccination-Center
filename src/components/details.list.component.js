@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {Row, Col, Card, Form, Button, InputGroup, FormControl, DropdownButton, Dropdown,Table} from 'react-bootstrap';
+toast.configure()
+
+// const notify2 = ()=>{
+//
+//     // Calling toast method by passing string
+//     toast('Your Details Deleted Successfully ! ')
+// }
 
 const Detail = props => (
     <tr>
@@ -59,30 +69,45 @@ export default class DetailsList extends Component {
 
     render() {
         return (
-            <div>
-                <h3>Logged Details</h3>
-                <table className="table">
-                    <thead className="thead-light">
-                    <tr>
-                        <th>Username</th>
-                        <th>Full Name</th>
-                        <th>NIC</th>
-                        <th>Age</th>
-                        <th>Vaccine Type</th>
-                        <th>Vaccine Dosage</th>
-                        <th>Mobile Number</th>
-                        <th>District</th>
-                        <th>Division</th>
-                        <th>Grama Niladhari</th>
-                        <th>Nearest Location</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    { this.detailList() }
-                    </tbody>
-                </table>
-            </div>
-        )
+
+                <Row>
+                    <Col>
+                        <Card>
+                            <Card.Header>
+                                <Card.Title as="h5">Submitted Details</Card.Title>
+
+                            </Card.Header>
+                            <Card.Body>
+                                <Table responsive>
+                                    <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Full Name</th>
+                                        <th>NIC</th>
+                                        <th>Age</th>
+                                        <th>Vaccine Type</th>
+                                        <th>Vaccine Dosage</th>
+                                        <th>Mobile Number</th>
+                                        <th>District</th>
+                                        <th>Division</th>
+                                        <th>Grama Niladhari</th>
+                                        <th>Nearest Location</th>
+                                        <th>Actions</th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    { this.detailList() }
+
+                                    </tbody>
+                                </Table>
+                            </Card.Body>
+                        </Card>
+
+                    </Col>
+                </Row>
+
+        );
     }
 }
